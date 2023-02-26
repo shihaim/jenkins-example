@@ -8,15 +8,16 @@ pipeline {
                 bat './gradlew.bat clean build'
             }
         }
-        stage('Test') {
+        stage('Copy') {
             steps {
-                echo 'Testing..'
+                echo 'Copying..'
+                sh 'rm -rf ./build/libs/demo-0.0.1-SNAPSHOT.jar'
+                sh 'cp ./build/libs/demo-0.0.1-SNAPSHOT.jar ./'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                bat 'cp ./build/libs/demo-0.0.1-SNAPSHOT.jar ./'
                 bat 'java -jar ./demo-0.0.1-SNAPSHOT.jar'
             }
         }
