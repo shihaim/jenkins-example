@@ -5,8 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh './gradlew clean'
-                sh './gradlew build'
+                bat './gradlew.bat clean build'
             }
         }
         stage('Test') {
@@ -17,8 +16,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh 'cp ./build/libs/demo-0.0.1-SNAPSHOT.jar ./'
-                sh 'java -jar demo-0.0.1-SNAPSHOT.jar'
+                bat 'cp ./build/libs/demo-0.0.1-SNAPSHOT.jar ./'
+                bat 'java -jar ./demo-0.0.1-SNAPSHOT.jar'
             }
         }
     }
